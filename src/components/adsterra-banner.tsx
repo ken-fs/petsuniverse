@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { INVOKE_HOST, type AdSlot } from "@/lib/ads";
+import type { AdSlot } from "@/lib/ads";
 
 /**
  * Adsterra banner, isolated inside its own srcdoc iframe.
@@ -32,9 +32,9 @@ export function AdsterraBanner({
 <script type="text/javascript">
 atOptions={key:'${slot.key}',format:'iframe',height:${slot.height},width:${slot.width},params:{}};
 </${""}script>
-<script type="text/javascript" src="//${INVOKE_HOST}/${slot.key}/invoke.js"></${""}script>
+<script type="text/javascript" src="${slot.src}"></${""}script>
 </body></html>`;
-  }, [slot.key, slot.width, slot.height]);
+  }, [slot.key, slot.width, slot.height, slot.src]);
 
   // Nothing to show until a key is configured.
   if (!slot.key) return null;
