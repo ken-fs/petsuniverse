@@ -15,13 +15,20 @@
 | 构建产物 | ✅ canonical / sitemap / robots 全部指向 `https://petsuniverse.site` |
 | IndexNow key | ✅ 已生成 `8c886f4e6e3aaa6a44f194de32eec4e7`（`.indexnow-key` + `public/<key>.txt`） |
 | GitHub 仓库 | ⏳ 待创建并推送 |
-| Worker | ⏳ 待建（需要 domain 先注册，见下） |
+| Worker | ✅ `petsuniverse` 已部署（apex + www 已绑）|
 | 域名 | ✅ **已注册**（2026-09-26，到期 2027-09-26） |
-| CF zone | ✅ 已建（`0b75dc862b6c1d5b5d821d2c7b2a4b57`，2026-09-26 16:53）—— 状态 pending，等 NS 传播 |
+| CF zone | ✅ **active**（`0b75dc862b6c1d5b5d821d2c7b2a4b57`，2026-09-26 16:53 建，当晚激活）|
+| 自定义域名 | ✅ **已绑定并生效**：`petsuniverse.site` + `www.petsuniverse.site` 均 HTTP 200 |
+| SSL | ✅ 证书 CN=petsuniverse.site（2026-09-26 → 12-25，CF 自动签发）|
+| IndexNow | ✅ 已推 11 个 URL（HTTP 202）|
 | NS（注册商侧）| ✅ 已用 Spaceship API 填好：**`daisy.ns.cloudflare.com` + `lochlan.ns.cloudflare.com`** |
 | DNSSEC | ✅ 已关闭（注册商侧原本开着，DS 记录已撤 —— 不撤的话指向 CF 后全网 SERVFAIL）|
-| 后台守望 | ✅ `scripts/watch-zone-and-wire.sh`（zone 一 active 自动跑完接线）|
-| GSC 属性 | ❌ 未建 |
+| 后台守望 | ✅ `scripts/watch-zone-and-wire.sh`（本次因代理掉线没抓到激活，手动跑了 wire-domain.sh）|
+
+**上线时间线（2026-09-26）**：16:15 域名注册 → 16:20 改 NS → 16:41 DNSSEC 撤 DS →
+16:53 建 zone（CF 分配 daisy/lochlan，与舰队其他 zone 不同）→ 16:55 改 NS 为 CF 那对 →
+当晚 zone active → 21:59 wire-domain.sh 完成绑定 → 全部路由 200。
+| GSC 属性 | ❌ 未建 —— **人工**：加 `sc-domain:petsuniverse.site` → DNS TXT → 加服务账号为 Owner |
 
 > 域名现状（2026-09-26 RDAP 实测）：`petsuniverse.xyz` 已注册（09-17）、
 > `petsuniverse.wiki` 已注册（09-21）、`petsuniverse.net` 已注册（2010）。

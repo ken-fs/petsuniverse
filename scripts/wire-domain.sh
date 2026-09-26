@@ -10,7 +10,26 @@ DOMAIN="${1:-petsuniverse.site}"
 cd "$(dirname "$0")/.."
 
 echo "▸ 1/5 检查 zone 状态"
-TOKEN=$(python3 -c "import re;d=open('$HOME/Library/Preferences/.wrangler/config/default.toml').read();print(re.search(r'^oauth_token\s*=\s*\"([^\"]+)\"',d,re.M).group(1))" 2>/dev/null)
+# Token 优先级：~/.config/cloudflare/env 的静态 API token（不会过期）
+# → 其次 wrangler 的 OAuth token（约 24h 过期，过期先跑 `npx wrangler whoami` 续期）
+TOKEN=""
+if [ -f "$HOME/.config/cloudflare/env" ]; then
+  TOKEN=$(python3 -c "
+import re
+d=open('$HOME/.config/cloudflare/env').read()
+m=re.search(r'CF_API_TOKEN\s*=\s*\"?([A-Za-z0-9_-]{20,})\"?', d)
+print(m.group(1) if m else '')
+")
+fi
+if [ -z "$TOKEN" ] && [ -f "$HOME/Library/Preferences/.wrangler/config/default.toml" ]; then
+  TOKEN=$(python3 -c "
+import re
+d=open('$HOME/Library/Preferences/.wrangler/config/default.toml').read()
+m=re.search(r'oauth_token\s*=\s*\"([^\"]+)\"', d)
+print(m.group(1) if m else '')
+")
+fi
+[ -z "$TOKEN" ] && { echo "  ✗ 拿不到 CF token"; exit 1; }
 ZONE=$(curl -s -H "Authorization: Bearer $TOKEN" "https://api.cloudflare.com/client/v4/zones?name=$DOMAIN")
 STATUS=$(echo "$ZONE" | python3 -c "import json,sys;d=json.load(sys.stdin);r=d.get('result') or [];print(r[0]['status'] if r else 'missing')")
 if [ "$STATUS" != "active" ]; then
@@ -28,7 +47,7 @@ echo "▸ 3/5 部署到 Worker"
 npx wrangler deploy 2>&1 | grep -E "Deployed|workers.dev|error" | tail -2
 
 echo "▸ 4/5 绑定自定义域名（workers_routes API）"
-ACC=$(npx wrangler whoami 2>/dev/null | grep -oE "[0-9a-f]{32}" | head -1)
+ACC="${CF_ACCOUNT_ID:-70716e073f0925c564bafd0eaf0be307}"  # 舰队账号
 BIND=$(curl -s -X PUT -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
   "https://api.cloudflare.com/client/v4/accounts/$ACC/workers/domains" \
   -d "{\"environment\":\"production\",\"hostname\":\"$DOMAIN\",\"service\":\"petsuniverse\",\"zone_name\":\"$DOMAIN\"}")
@@ -51,5 +70,5 @@ node scripts/submit-indexnow.mjs 2>&1 | grep -vE "UNDICI|trace" | tail -3
 
 echo
 echo "✅ 完成。剩下人工两件："
-echo "   1. GSC 加属性 sc-domain:$DOMAIN（DNS TXT 验证）→ 加服务账号为 Owner"
+echo "   1. GSC 加属性 sc-domain:${DOMAIN}（DNS TXT 验证）→ 加服务账号为 Owner"
 echo "   2. GA4 建属性 → 填 Cloudflare 构建变量 NEXT_PUBLIC_GA_ID"
