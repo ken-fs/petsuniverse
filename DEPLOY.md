@@ -17,7 +17,10 @@
 | GitHub 仓库 | ⏳ 待创建并推送 |
 | Worker | ⏳ 待建（需要 domain 先注册，见下） |
 | 域名 | ✅ **已注册**（2026-09-26，到期 2027-09-26） |
-| CF zone | ⏳ **待人工添加**（wrangler token 只有 `zone:read`，建不了 zone；CF MCP 的 token 已失效）|
+| CF zone | ✅ 已建（`0b75dc862b6c1d5b5d821d2c7b2a4b57`，2026-09-26 16:53）—— 状态 pending，等 NS 传播 |
+| NS（注册商侧）| ✅ 已用 Spaceship API 填好：**`daisy.ns.cloudflare.com` + `lochlan.ns.cloudflare.com`** |
+| DNSSEC | ✅ 已关闭（注册商侧原本开着，DS 记录已撤 —— 不撤的话指向 CF 后全网 SERVFAIL）|
+| 后台守望 | ✅ `scripts/watch-zone-and-wire.sh`（zone 一 active 自动跑完接线）|
 | GSC 属性 | ❌ 未建 |
 
 > 域名现状（2026-09-26 RDAP 实测）：`petsuniverse.xyz` 已注册（09-17）、
@@ -44,7 +47,12 @@ GIT_TERMINAL_PROMPT=0 git push -q origin main \
   || GIT_TERMINAL_PROMPT=0 git -c http.proxy=http://127.0.0.1:7897 push -q origin main
 ```
 
-### ③ 域名加进 Cloudflare（建 zone）— **需要人工，最快的一步**
+> **踩坑记录（2026-09-26）**：曾按「舰队 22 个 zone 都用 `ariella`/`seamus`」推断
+> 这是账号固定 NS 对 —— **错**。CF 的 NS 是**按 zone 分配**的，本 zone 拿到的是
+> `daisy`/`lochlan`。教训：NS 必须以 CF 建 zone 后 `name_servers` 字段返回的为准，
+> 不能用同账号其他 zone 推断。
+
+### ③ 域名加进 Cloudflare（建 zone）— ✅ 已完成
 
 dashboard → Add a site → `petsuniverse.site`（账号 `70716e073f0925c564bafd0eaf0be307`）
 → 把 CF 给出的两个 NS 填到注册商 → 等 zone `active`。
