@@ -1,0 +1,148 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-geist-sans);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+
+  /* Rarity ladder: sequential ink ramp, not a rainbow.
+     Ordinal data (S+ > S > A > B > C > D) gets a sequential encoding.
+     Tier and rarity correlate, so one ramp carries both readings. */
+  --color-tier-splus: var(--tier-splus);
+  --color-tier-s: var(--tier-s);
+  --color-tier-a: var(--tier-a);
+  --color-tier-b: var(--tier-b);
+  --color-tier-c: var(--tier-c);
+  --color-tier-d: var(--tier-d);
+
+  /* Radius lock: 2 values only. Controls are pill, containers are 14px.
+     Softer than the fleet's reference site on purpose — this is a pet game,
+     not a spreadsheet. */
+  --radius-control: 999px;
+  --radius-container: 14px;
+  --radius: 14px;
+}
+
+:root {
+  /* Light theme: faint mint ground, deep green ink, one coral accent.
+     The mint sits at chroma 0.008 — a tint, not a colour — so the pet tables
+     and rarity ladders stay the loudest thing on the page. Deliberately NOT
+     the dark navy-plus-neon every competitor wiki ships, and deliberately not
+     the burnt-amber of the fleet's other reference site.
+     Contrast (WCAG, computed before shipping): fg/bg 16.4:1, muted/bg 5.2:1,
+     white on primary 4.75:1. */
+  --background: oklch(0.9820 0.0080 165.00);
+  --foreground: oklch(0.2200 0.0120 165.00);
+  --card: oklch(0.9950 0.0040 165.00);
+  --card-foreground: oklch(0.2200 0.0120 165.00);
+  --popover: oklch(0.9950 0.0040 165.00);
+  --popover-foreground: oklch(0.2200 0.0120 165.00);
+  --primary: oklch(0.5750 0.1650 25.00);
+  --primary-foreground: oklch(1.0000 0.0000 0.00);
+  --secondary: oklch(0.9550 0.0150 165.00);
+  --secondary-foreground: oklch(0.2200 0.0120 165.00);
+  --muted: oklch(0.9550 0.0150 165.00);
+  --muted-foreground: oklch(0.5200 0.0120 165.00);
+  --accent: oklch(0.9550 0.0150 165.00);
+  --accent-foreground: oklch(0.2200 0.0120 165.00);
+  --destructive: oklch(0.5054 0.1905 27.52);
+  --border: oklch(0.9100 0.0200 165.00);
+  --input: oklch(0.9100 0.0200 165.00);
+  --ring: oklch(0.5750 0.1650 25.00);
+
+  --tier-splus: oklch(0.2800 0.0120 165.00);
+  --tier-s: oklch(0.3900 0.0120 165.00);
+  --tier-a: oklch(0.4900 0.0120 165.00);
+  --tier-b: oklch(0.5900 0.0120 165.00);
+  --tier-c: oklch(0.6900 0.0120 165.00);
+  --tier-d: oklch(0.7900 0.0120 165.00);
+}
+
+.dark {
+  --background: oklch(0.2050 0.0120 165.00);
+  --foreground: oklch(0.9600 0.0080 165.00);
+  --card: oklch(0.2450 0.0140 165.00);
+  --card-foreground: oklch(0.9600 0.0080 165.00);
+  --popover: oklch(0.2450 0.0140 165.00);
+  --popover-foreground: oklch(0.9600 0.0080 165.00);
+  --primary: oklch(0.7200 0.1400 25.00);
+  --primary-foreground: oklch(0.1800 0.0120 25.00);
+  --secondary: oklch(0.2700 0.0160 165.00);
+  --secondary-foreground: oklch(0.9600 0.0080 165.00);
+  --muted: oklch(0.2700 0.0160 165.00);
+  --muted-foreground: oklch(0.7200 0.0100 165.00);
+  --accent: oklch(0.2700 0.0160 165.00);
+  --accent-foreground: oklch(0.9600 0.0080 165.00);
+  --destructive: oklch(0.6500 0.1900 25.00);
+  --border: oklch(0.3100 0.0180 165.00);
+  --input: oklch(0.3100 0.0180 165.00);
+  --ring: oklch(0.7200 0.1400 25.00);
+
+  /* Ramp inverts: the rarest pet is the brightest on dark. */
+  --tier-splus: oklch(0.9200 0.0080 165.00);
+  --tier-s: oklch(0.8200 0.0090 165.00);
+  --tier-a: oklch(0.7200 0.0100 165.00);
+  --tier-b: oklch(0.6200 0.0110 165.00);
+  --tier-c: oklch(0.5200 0.0120 165.00);
+  --tier-d: oklch(0.4300 0.0130 165.00);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  /* Numbers in data contexts line up. */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+  }
+  ::selection {
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
+}
+
+@layer utilities {
+  /* Hairline that survives fractional device pixels without going blurry. */
+  .rule {
+    border-color: var(--border);
+  }
+  /* One elevation level only. Tinted to the paper hue, never pure black. */
+  .lift {
+    box-shadow:
+      0 1px 0 0 oklch(0.9115 0.0309 72.16 / 0.8),
+      0 6px 20px -8px oklch(0.2161 0.0061 56.04 / 0.14);
+  }
+  .dark .lift {
+    box-shadow:
+      0 1px 0 0 oklch(0.3050 0.0225 62.00 / 0.6),
+      0 6px 20px -8px oklch(0 0 0 / 0.5);
+  }
+}
