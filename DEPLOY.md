@@ -76,10 +76,21 @@ bash scripts/wire-domain.sh petsuniverse.site
 # = 构建 → 部署 → 绑域名（workers_routes API）→ 验证 3 个 URL → 推 IndexNow
 ```
 
-### ④ 连接 Cloudflare Git 集成
+### ④ 连接 Cloudflare Git 集成 —— ✅ **已用 API 完成**（2026-09-26）
 
-**为什么必须手动**：`wrangler` 的 OAuth scope 里没有 `workers_builds`，
-API 返回 `Authentication error`。只能在 dashboard 配。
+> **修正记录**：AGENTS 里写「只能 dashboard 手动」是基于 **wrangler OAuth token** 的实测
+> （确实报 `Authentication error`）。但 **cloudflare MCP 的 token 有 builds 写权限** ——
+> 本次用 `cloudflare_execute` 三步走通，全程无需浏览器：
+>
+> 1. `PUT /accounts/{id}/builds/repos/connections` → repo_connection_uuid
+> 2. `POST /accounts/{id}/builds/workers` → 建 Worker 构建配置（脚本标签 `2bac3c76…`）
+> 3. trigger 自动生成（`branch_includes: ["main"]`，build=`npm run build`，deploy=`npx wrangler deploy`）
+>
+> 用到的字段：repo_id `1388839132`、provider_account_id `223587720`（ken-fs）、
+> 共享 build token `0c55960d-77b2-474d-8c0e-3e39adb5053c`（与 animedice/drilltoearthscore 同用）。
+> **新站接线可以直接抄这段**，不必再去 dashboard。
+
+以下 dashboard 步骤留档备查（若 API 不可用时的退路）：
 
 1. https://dash.cloudflare.com/?to=/:account/workers-and-pages
 2. 建 Worker `petsuniverse`（或先 `npx wrangler deploy` 建一个空的）
