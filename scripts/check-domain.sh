@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# 检查 animedice.xyz 是否已生效（NS 改完后跑）
+# 检查 petsuniverse.site 是否已生效（NS 改完后跑）
 set -uo pipefail
-D=animedice.xyz
+D=petsuniverse.site
 
 echo "▸ NS 委派"
 NS=$(dig +short @1.1.1.1 NS $D 2>/dev/null | sort)
@@ -9,7 +9,7 @@ if echo "$NS" | grep -q cloudflare; then
   echo "$NS" | sed 's/^/    ✅ /'
 else
   echo "$NS" | sed 's/^/    ⏳ /' || echo "    ⏳ 无记录"
-  echo "    → 去 Spaceship 改成: ariella.ns.cloudflare.com / seamus.ns.cloudflare.com"
+  echo "    → 去注册商改成 CF 在 dashboard 给出的两个 NS（每个 zone 不同）"
 fi
 
 echo

@@ -16,8 +16,8 @@
 | IndexNow key | ✅ 已生成 `8c886f4e6e3aaa6a44f194de32eec4e7`（`.indexnow-key` + `public/<key>.txt`） |
 | GitHub 仓库 | ⏳ 待创建并推送 |
 | Worker | ⏳ 待建（需要 domain 先注册，见下） |
-| 域名 | ❌ **未注册** — 需要人工注册 `petsuniverse.site` |
-| CF zone | ❌ 未创建 |
+| 域名 | ✅ **已注册**（2026-09-26，到期 2027-09-26） |
+| CF zone | ⏳ **待人工添加**（wrangler token 只有 `zone:read`，建不了 zone；CF MCP 的 token 已失效）|
 | GSC 属性 | ❌ 未建 |
 
 > 域名现状（2026-09-26 RDAP 实测）：`petsuniverse.xyz` 已注册（09-17）、
@@ -28,9 +28,9 @@
 
 ## 需要人工做的四件事（按顺序）
 
-### ① 注册域名
+### ① ~~注册域名~~ ✅ 已完成
 
-注册 `petsuniverse.site`（或换 `.gg`，换的话全局替换 `petsuniverse.site`）。
+`petsuniverse.site` 已注册（2026-09-26）。
 
 ### ② 建 GitHub 仓库并推送
 
@@ -44,11 +44,22 @@ GIT_TERMINAL_PROMPT=0 git push -q origin main \
   || GIT_TERMINAL_PROMPT=0 git -c http.proxy=http://127.0.0.1:7897 push -q origin main
 ```
 
-### ③ 域名加进 Cloudflare（建 zone）
+### ③ 域名加进 Cloudflare（建 zone）— **需要人工，最快的一步**
 
-Cloudflare dashboard → Add a site → `petsuniverse.site` → 把 NS 改到 CF 给的两个地址。
-⚠️ **zone pending 时不要绑自定义域名**（会签发失败且不重试，AGENTS 记过这个坑）。
-等 zone active 再进第 ④ 步。
+dashboard → Add a site → `petsuniverse.site`（账号 `70716e073f0925c564bafd0eaf0be307`）
+→ 把 CF 给出的两个 NS 填到注册商 → 等 zone `active`。
+
+⚠️ 两个坑（AGENTS 记过）：
+- CF 只在建 zone 后几十秒检查一次 NS，之后不再重试 → NS 改完若仍 pending，
+  去 dashboard 点「立即检查名称服务器」
+- **zone pending 时不要绑自定义域名**（证书会签发失败且不重试）
+
+**zone active 后跑一条命令即可完成剩余全部**：
+
+```bash
+bash scripts/wire-domain.sh petsuniverse.site
+# = 构建 → 部署 → 绑域名（workers_routes API）→ 验证 3 个 URL → 推 IndexNow
+```
 
 ### ④ 连接 Cloudflare Git 集成
 
