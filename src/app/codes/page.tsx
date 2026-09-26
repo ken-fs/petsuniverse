@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 const FAQ = [
   {
     q: "How many working Pets Universe codes are there?",
-    a: `There are ${codes.length} codes on this list, all sharing potions and fruit rewards. Codes come from the developers and from content creators, so names like Russo, Ostrichh and DroverQ are creator codes rather than milestone codes.`,
+    a: `There are ${codes.length} codes on this list, all sharing potions and fruit rewards, and every one is confirmed by two independent listings.  Codes come from the developers and from content creators, so names like Russo, Ostrichh and DroverQ are creator codes rather than milestone codes.`,
   },
   {
     q: "Why is my Pets Universe code not working?",
@@ -83,13 +83,13 @@ export default function CodesPage() {
         </div>
 
         <p className="mt-4 max-w-[62ch] text-sm text-muted-foreground">
-          Sourcing note: each code on this page is currently confirmed by{" "}
+          Sourcing note: every code on this page is confirmed by{" "}
           <strong className="font-medium text-foreground">
-            one independent listing
-          </strong>
-          , not two. That is why we publish the list in full but tell you so — the
-          potions are small and the risk of a retired code is real. Codes that get a
-          second confirmation are marked as such.
+            two independent listings
+          </strong>{" "}
+          with matching rewards, which is the threshold this site publishes at. Codes
+          retire without warning in this genre, so the list is re-checked rather than
+          trusted — anything that stops matching gets pulled.
         </p>
       </section>
 

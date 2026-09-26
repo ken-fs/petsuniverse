@@ -1,5 +1,5 @@
 {
-  "_note": "Every field carries its own source status. verified=false means no public source exists for that number yet — pages must render a gap rather than a plausible guess. Source list and the reason each gap exists are on /about/.",
+  "_note": "Every field carries its own source status. verified=false means no public source exists for that number yet — pages must render a gap rather than a plausible guess. Codes are corroborated by two independent listings (checked 2026-09-26); pets carry their own source note. Source list and the reason each gap exists are on /about/.",
   "game": {
     "name": "Pets Universe",
     "developer": "Lip Builds",
@@ -53,16 +53,56 @@
     }
   ],
   "codes": [
-    { "code": "DroverQ", "reward": "1 Coins Potion, 1 Luck Potion, 1 Rubies Potion", "sources": 1 },
-    { "code": "Russo", "reward": "1 Banana, 1 Coins Potion", "sources": 1 },
-    { "code": "DarkRose", "reward": "1 Luck Potion, 1 Kiwi", "sources": 1 },
-    { "code": "AG64", "reward": "1 Critical Potion, 1 Mango", "sources": 1 },
-    { "code": "Cupcake", "reward": "1 Critical Potion, 1 Blueberry", "sources": 1 },
-    { "code": "E11opoppet", "reward": "1 Hatch Potion, 1 Blueberry", "sources": 1 },
-    { "code": "Update1", "reward": "3 Apples, 1 Banana, and Potions", "sources": 1 },
-    { "code": "Olopomidoro", "reward": "1 Coins Potion, 1 Luck Potion, 1 Rubies Potion", "sources": 1 },
-    { "code": "Ostrichh", "reward": "1 Ruby Potion, 1 Apple", "sources": 1 },
-    { "code": "Miniupdate", "reward": "Fruit, Boosts and Potions", "sources": 1 }
+    {
+      "code": "DroverQ",
+      "reward": "1 Coins Potion, 1 Luck Potion, 1 Rubies Potion",
+      "sources": 2
+    },
+    {
+      "code": "Russo",
+      "reward": "1 Banana, 1 Coins Potion",
+      "sources": 2
+    },
+    {
+      "code": "DarkRose",
+      "reward": "1 Luck Potion, 1 Kiwi",
+      "sources": 2
+    },
+    {
+      "code": "AG64",
+      "reward": "1 Critical Potion, 1 Mango",
+      "sources": 2
+    },
+    {
+      "code": "Cupcake",
+      "reward": "1 Critical Potion, 1 Blueberry",
+      "sources": 2
+    },
+    {
+      "code": "E11opoppet",
+      "reward": "1 Hatch Potion, 1 Blueberry",
+      "sources": 2
+    },
+    {
+      "code": "Update1",
+      "reward": "3 Apples, 1 Banana, and Potions",
+      "sources": 2
+    },
+    {
+      "code": "Olopomidoro",
+      "reward": "1 Coins Potion, 1 Luck Potion, 1 Rubies Potion",
+      "sources": 2
+    },
+    {
+      "code": "Ostrichh",
+      "reward": "1 Ruby Potion, 1 Apple",
+      "sources": 2
+    },
+    {
+      "code": "Miniupdate",
+      "reward": "Fruit, Boosts and Potions",
+      "sources": 2
+    }
   ],
   "redeemSteps": [
     "Open Pets Universe on Roblox.",
@@ -71,18 +111,54 @@
     "Press Redeem and the potions or fruit land in your inventory."
   ],
   "systems": [
-    { "name": "Pets", "detail": "The game says 'hundreds of unique pets', hatched from eggs and tradeable — the title itself carries [TRADES]." },
-    { "name": "Eggs", "detail": "Bought with Coins. The Fantasy World update added an exclusive egg line on top of the standard set." },
-    { "name": "Coins", "detail": "The main currency. Farmed from breakables and normal play, spent on eggs." },
-    { "name": "Rubies", "detail": "The second currency. Premium subscribers earn +10% Coins and Rubies." },
-    { "name": "Potions", "detail": "Coins, Luck, Hatch, Critical and Rubies potions. Codes hand them out; Luck and Hatch potions tilt egg odds." },
-    { "name": "Fruits", "detail": "Apples, Bananas, Blueberries, Kiwis and Mangos — burned through during hatching runs and tracked by the Fruits Mastery badge." },
-    { "name": "Breakables", "detail": "Destructible objects around the map that drop Coins; tracked by the Breakables Mastery badge." },
-    { "name": "Mastery badges", "detail": "Five in-game badges — Fruits, Eggs, Playtime, Breakables and Potions — record long-run progress and are the only public stat the game exposes." },
-    { "name": "Worlds", "detail": "A Fantasy World (crafting plus exclusive eggs) and the new world that arrived with the trading update." },
-    { "name": "Charms", "detail": "Equippable boosts added in the trading update." },
-    { "name": "Trading", "detail": "Player-to-player trades. This is why a value list matters — and why its absence is the site's first gap to close." },
-    { "name": "Premium and group", "detail": "Premium grants +10% Coins and Rubies; joining the Lip Builds group unlocks bonus rewards." }
+    {
+      "name": "Pets",
+      "detail": "The game says 'hundreds of unique pets', hatched from eggs and tradeable — the title itself carries [TRADES]."
+    },
+    {
+      "name": "Eggs",
+      "detail": "Bought with Coins. The Fantasy World update added an exclusive egg line on top of the standard set."
+    },
+    {
+      "name": "Coins",
+      "detail": "The main currency. Farmed from breakables and normal play, spent on eggs."
+    },
+    {
+      "name": "Rubies",
+      "detail": "The second currency. Premium subscribers earn +10% Coins and Rubies."
+    },
+    {
+      "name": "Potions",
+      "detail": "Coins, Luck, Hatch, Critical and Rubies potions. Codes hand them out; Luck and Hatch potions tilt egg odds."
+    },
+    {
+      "name": "Fruits",
+      "detail": "Apples, Bananas, Blueberries, Kiwis and Mangos — burned through during hatching runs and tracked by the Fruits Mastery badge."
+    },
+    {
+      "name": "Breakables",
+      "detail": "Destructible objects around the map that drop Coins; tracked by the Breakables Mastery badge."
+    },
+    {
+      "name": "Mastery badges",
+      "detail": "Five in-game badges — Fruits, Eggs, Playtime, Breakables and Potions — record long-run progress and are the only public stat the game exposes."
+    },
+    {
+      "name": "Worlds",
+      "detail": "A Fantasy World (crafting plus exclusive eggs) and the new world that arrived with the trading update."
+    },
+    {
+      "name": "Charms",
+      "detail": "Equippable boosts added in the trading update."
+    },
+    {
+      "name": "Trading",
+      "detail": "Player-to-player trades. This is why a value list matters — and why its absence is the site's first gap to close."
+    },
+    {
+      "name": "Premium and group",
+      "detail": "Premium grants +10% Coins and Rubies; joining the Lip Builds group unlocks bonus rewards."
+    }
   ],
   "gaps": [
     "The full pet list and each pet's hatch odds. The game advertises 'hundreds of pets' and publishes no index; the only confirmed names are the ones printed on its own artwork.",
