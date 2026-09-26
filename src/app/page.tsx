@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { codes, game, verifiedPets, gaps, LAST_CHECKED, visitsPerFavourite } from "@/data/game";
 import { CopyCode } from "@/components/copy-code";
+import { AdsterraBanner } from "@/components/adsterra-banner";
+import { LEADERBOARD, RECTANGLE } from "@/lib/ads";
 
 export const metadata: Metadata = {
   title: "Pets Universe codes, pet rarities and trading values",
@@ -75,6 +77,9 @@ export default function HomePage() {
         <Fact label="Last updated" value={game.updated} sub="game patch, not this page" />
       </section>
 
+      {/* Desktop-only leaderboard: 728px overflows phones. */}
+      <AdsterraBanner slot={LEADERBOARD} className="mt-10 hidden md:flex" />
+
       <section className="grid gap-10 py-16 lg:grid-cols-2">
         <div>
           <h2 className="text-sm font-medium">What we have confirmed</h2>
@@ -137,6 +142,8 @@ export default function HomePage() {
           </p>
         </div>
       </section>
+
+      <AdsterraBanner slot={RECTANGLE} className="mt-14" />
 
       <section className="border-t rule py-12">
         <h2 className="text-sm font-medium">Where to go next</h2>

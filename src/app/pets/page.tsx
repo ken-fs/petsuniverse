@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { pets, game, LAST_CHECKED } from "@/data/game";
 import { PetListJsonLd } from "@/components/json-ld";
+import { AdsterraBanner } from "@/components/adsterra-banner";
+import { RECTANGLE } from "@/lib/ads";
 
 export const metadata: Metadata = {
   title: "Pets Universe pets — confirmed roster and rarities",
@@ -99,6 +101,8 @@ export default function PetsPage() {
           ))}
         </ul>
       </section>
+
+      <AdsterraBanner slot={RECTANGLE} className="mt-14" />
 
       <section className="border-t rule mt-14 py-12">
         <h2 className="text-sm font-medium">How this list grows</h2>

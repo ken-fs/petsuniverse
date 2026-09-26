@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { game, systems, codes, LAST_CHECKED } from "@/data/game";
+import { AdsterraBanner } from "@/components/adsterra-banner";
+import { RECTANGLE } from "@/lib/ads";
 
 export const metadata: Metadata = {
   title: "Pets Universe beginner guide — the loop, the systems, the first hour",
@@ -66,6 +68,8 @@ export default function GuidePage() {
           ))}
         </dl>
       </section>
+
+      <AdsterraBanner slot={RECTANGLE} className="mt-12" />
 
       <section className="border-t rule py-12">
         <h2 className="text-sm font-medium">The mastery badges, and why they matter</h2>

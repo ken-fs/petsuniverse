@@ -3,6 +3,8 @@ import Link from "next/link";
 import { codes, game, redeemSteps, LAST_CHECKED } from "@/data/game";
 import { CopyCode } from "@/components/copy-code";
 import { FaqJsonLd } from "@/components/json-ld";
+import { AdsterraBanner } from "@/components/adsterra-banner";
+import { LEADERBOARD, RECTANGLE } from "@/lib/ads";
 
 export const metadata: Metadata = {
   title: `Pets Universe codes (September 2026) — ${codes.length} working codes`,
@@ -59,6 +61,9 @@ export default function CodesPage() {
         </p>
       </header>
 
+      {/* Highest-intent page on the site: codes are why people land here. */}
+      <AdsterraBanner slot={LEADERBOARD} className="mb-10 hidden md:flex" />
+
       <section>
         <div className="overflow-hidden rounded-[var(--radius-container)] border rule">
           <div className="grid grid-cols-[1fr_auto] gap-4 border-b rule bg-muted/60 px-5 py-3 text-xs font-medium text-muted-foreground sm:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)_auto]">
@@ -92,6 +97,8 @@ export default function CodesPage() {
           trusted — anything that stops matching gets pulled.
         </p>
       </section>
+
+      <AdsterraBanner slot={RECTANGLE} className="mt-14" />
 
       <section className="border-t rule mt-14 py-12">
         <h2 className="text-sm font-medium">How to redeem a code</h2>
