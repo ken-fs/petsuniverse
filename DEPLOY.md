@@ -29,6 +29,7 @@
 16:53 建 zone（CF 分配 daisy/lochlan，与舰队其他 zone 不同）→ 16:55 改 NS 为 CF 那对 →
 当晚 zone active → 21:59 wire-domain.sh 完成绑定 → 全部路由 200。
 | GSC 属性 | ❌ 未建 —— **人工**：加 `sc-domain:petsuniverse.site` → DNS TXT → 加服务账号为 Owner |
+| GA4 | ✅ 属性 `G-6SHF89BP9C` 已通过构建环境变量接入（同意门控：点接受前不加载任何 Google 脚本）|
 
 > 域名现状（2026-09-26 RDAP 实测）：`petsuniverse.xyz` 已注册（09-17）、
 > `petsuniverse.wiki` 已注册（09-21）、`petsuniverse.net` 已注册（2010）。
@@ -109,7 +110,7 @@ bash scripts/wire-domain.sh petsuniverse.site
 | 变量 | 值 |
 |---|---|
 | `NEXT_PUBLIC_SITE_URL` | `https://petsuniverse.site` |
-| `NEXT_PUBLIC_GA_ID` | GA4 属性 ID（**新建属性后填**，不填则全站不加载分析） |
+| `NEXT_PUBLIC_GA_ID` | ✅ **已设** `G-6SHF89BP9C`（2026-09-26，用 API 设进 trigger 环境变量）|
 
 ---
 
@@ -151,3 +152,28 @@ npm run build        # 静态导出到 ./out
 npm run lint
 npx wrangler deploy  # 手动部署（临时，会被下次 CI push 覆盖）
 ```
+
+---
+
+## GA4 接入方式（不要手贴 snippet）
+
+属性 ID：`G-6SHF89BP9C`。**不要**把 gtag 的 `<script>` 片段贴进页面 ——
+`src/components/analytics-consent.tsx` 是同意门控的：点「接受」之前**不发起任何
+Google 请求**（AGENTS 记过这个坑：手贴 snippet 会绕过门控）。
+
+正确做法（已完成）：
+
+```bash
+# 通过 builds API 设构建环境变量（NEXT_PUBLIC_* 在构建期内联进产物）
+PATCH /accounts/{account_id}/builds/triggers/{trigger_uuid}/environment_variables
+  { "NEXT_PUBLIC_GA_ID": { "is_secret": false, "value": "G-6SHF89BP9C" } }
+```
+
+本地开发想验证时用 `.env.local`（不提交）：
+
+```
+NEXT_PUBLIC_GA_ID=G-6SHF89BP9C
+```
+
+未设该变量时，`AnalyticsConsent` 直接不渲染横幅、不加载脚本（无属性 ID 就没有
+可同意的东西）—— 所以漏配不会把流量送错到别的站。
