@@ -101,7 +101,7 @@ bash scripts/wire-domain.sh petsuniverse.site
 | 字段 | 值 |
 |---|---|
 | Production branch | `main` |
-| Build command | `npx next build` |
+| Build command | `npm run build` |
 | Deploy command | `npx wrangler deploy` |
 | Root directory | `/` |
 
@@ -118,7 +118,7 @@ bash scripts/wire-domain.sh petsuniverse.site
 
 ```bash
 cd ~/Desktop/david/Ship/petsuniverse
-NEXT_PUBLIC_SITE_URL=https://petsuniverse.site npx next build
+NEXT_PUBLIC_SITE_URL=https://petsuniverse.site npm run build
 npx wrangler deploy
 node scripts/submit-indexnow.mjs          # IndexNow 推送
 node ~/Desktop/david/Ship/scripts/gsc.mjs index https://petsuniverse.site/   # Indexing API

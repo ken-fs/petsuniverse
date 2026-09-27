@@ -38,10 +38,34 @@ if [ "$STATUS" != "active" ]; then
   echo "      dashboard → Add a site → $DOMAIN → 把给出的两个 NS 改到注册商 → 等 active。"
   exit 1
 fi
-echo "  ✓ zone active"
+echo "✓ zone active"
+
+# 坑 1 的修复：NS 是**按 zone 分配**的（本 zone 是 daisy/lochlan，与舰队其他 22 个
+# zone 的 ariella/seamus 不同）—— 所以从 zone 读，绝不按账号推断。
+if [ -f "$HOME/.config/spaceship/env" ]; then
+  echo "▸ 1.5/5 同步 NS 到注册商（读 zone 实际分配的那对）"
+  NS=$(echo "$ZONE" | python3 -c "import json,sys;print(' '.join((json.load(sys.stdin)['result'] or [{}])[0].get('name_servers') or []))")
+  if [ -z "$NS" ]; then
+    echo "  ⚠️ zone 没返回 name_servers，跳过"
+  else
+    source "$HOME/.config/spaceship/env"
+    HOSTS=$(echo "$NS" | python3 -c "import json,sys;print(json.dumps(sys.stdin.read().split()))")
+    CUR=$(curl -s -H "X-Api-Key: $SPACESHIP_API_KEY" -H "X-Api-Secret: $SPACESHIP_API_SECRET" \
+      "https://spaceship.dev/api/v1/domains/$DOMAIN" | python3 -c "import json,sys;print(' '.join(json.load(sys.stdin)['nameservers']['hosts']))")
+    if [ "$CUR" = "$NS" ]; then
+      echo "  ✓ 注册商已是: $NS"
+    else
+      curl -s -X PUT -H "X-Api-Key: $SPACESHIP_API_KEY" -H "X-Api-Secret: $SPACESHIP_API_SECRET" \
+        -H "Content-Type: application/json" \
+        "https://spaceship.dev/api/v1/domains/$DOMAIN/nameservers" \
+        -d "{\"provider\":\"custom\",\"hosts\":$HOSTS}" --max-time 30 >/dev/null
+      echo "  ✓ 已改为: $NS（原来是: $CUR）"
+    fi
+  fi
+fi
 
 echo "▸ 2/5 重新构建（注入 NEXT_PUBLIC_SITE_URL）"
-NEXT_PUBLIC_SITE_URL="https://$DOMAIN" npx next build 2>&1 | grep -E "Compiled|error|Error|Generating static pages using 9 workers \(16" | tail -3
+NEXT_PUBLIC_SITE_URL="https://$DOMAIN" npm run build 2>&1 | grep -E "Compiled|error|Error|Generating static pages using 9 workers \(16" | tail -3
 
 echo "▸ 3/5 部署到 Worker"
 npx wrangler deploy 2>&1 | grep -E "Deployed|workers.dev|error" | tail -2

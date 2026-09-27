@@ -12,7 +12,7 @@ cd "$(dirname "$0")/.."
 echo "▸ 域名: $DOMAIN"
 
 echo "▸ 重新构建（注入 NEXT_PUBLIC_SITE_URL）"
-NEXT_PUBLIC_SITE_URL="https://$DOMAIN" npx next build 2>&1 | grep -E "Compiled|error|Error|Generating" | tail -3
+NEXT_PUBLIC_SITE_URL="https://$DOMAIN" npm run build 2>&1 | grep -E "Compiled|error|Error|Generating" | tail -3
 
 echo "▸ 部署"
 npx wrangler deploy 2>&1 | grep -E "Uploaded|Deployed|workers.dev|error" | tail -3
