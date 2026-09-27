@@ -44,3 +44,8 @@ next-env.d.ts
 # noisy at the web root, and they should never be crawled.
 out/__next*.txt
 out/**/__next*.txt
+
+# Written by scripts/write-deploy-marker.mjs (prebuild) at build time. Never commit
+# it: a checked-in copy always lags one commit, and one stale local `wrangler deploy`
+# is enough to make site-hygiene report the live site as out of date.
+public/.well-known/anvilwiki-deploy.txt
