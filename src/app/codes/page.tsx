@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { codes, game, redeemSteps, LAST_CHECKED } from "@/data/game";
+import { codes, redeemSteps, LAST_CHECKED } from "@/data/game";
 import { CopyCode } from "@/components/copy-code";
 import { FaqJsonLd } from "@/components/json-ld";
 import { AdsterraBanner } from "@/components/adsterra-banner";
 import { LEADERBOARD, RECTANGLE } from "@/lib/ads";
 
 export const metadata: Metadata = {
-  title: `Pets Universe codes (September 2026) — ${codes.length} working codes`,
+  title: `Pets Universe codes (October 2026) — ${codes.length} working codes`,
   description: `All ${codes.length} working Pets Universe codes with the exact reward for each — Coins, Luck, Hatch, Critical and Rubies potions plus fruit — and the steps to redeem them.`,
   alternates: { canonical: "/codes/" },
 };
@@ -30,8 +30,8 @@ const FAQ = [
     a: "In game: open the codes menu next to the shop, paste the code and press Redeem. The reward lands in your inventory immediately.",
   },
   {
-    q: "Does this game have an 800M-visits milestone code?",
-    a: `No milestone codes are published yet — the game is young (created ${game.created}) and every code we can verify is either a creator code or an update code. If a milestone code drops it gets added here on the same day.`,
+    q: "Does this game have milestone codes?",
+    a: `Yes — 1mvisits is a milestone code that went live when the game passed one million visits, and the update codes (Update4, Update2, Update1) ship with the game's patches. Milestone and update codes sit alongside creator codes like Russo, Ostrichh and DroverQ; whichever kind, every one on this page is confirmed by two independent listings before it is published.`,
   },
 ];
 
