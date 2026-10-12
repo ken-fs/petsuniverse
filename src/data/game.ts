@@ -36,7 +36,7 @@ export const gaps = raw.gaps as string[];
 export const verifiedPets = pets.filter((p) => p.verified);
 
 /** ISO date of the last pass over every source this site uses. */
-export const LAST_CHECKED = "2026-10-11";
+export const LAST_CHECKED = "2026-10-12";
 
 /**
  * Visits per favourite — the retention proxy the radar uses to separate games
