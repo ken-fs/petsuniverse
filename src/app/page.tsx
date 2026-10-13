@@ -24,7 +24,7 @@ export default function HomePage() {
           Roblox reference · updated {LAST_CHECKED}
         </p>
         <h1 className="mt-3 max-w-[24ch] text-4xl font-semibold tracking-tight sm:text-5xl">
-          Pets Universe, documented honestly
+          Pets Universe Wiki &amp; Values
         </h1>
         <p className="mt-5 max-w-[62ch] text-lg text-muted-foreground">
           {game.name} is a pet collector from {game.developer} — hundreds of pets,
