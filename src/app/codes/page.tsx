@@ -35,6 +35,18 @@ const FAQ = [
   },
 ];
 
+// Source: official wiki code template (petsuniverse.miraheze.org/wiki/Template:Codes),
+// cross-checked Oct 12, 2026. The wiki's per-wave dates + statuses are the
+// authority here; aggregators lag it by days on expiries.
+const UPDATE_WAVES = [
+  { wave: "Update 4", arrived: "Oct 9", codes: ["Update4"], status: "working" },
+  { wave: "Update 3", arrived: "Oct 2", codes: ["Update3"], status: "expired" },
+  { wave: "Update 2", arrived: "Sep 25", codes: ["Update2"], status: "expired" },
+  { wave: "Update 1", arrived: "Sep 18", codes: ["Update1"], status: "expired" },
+  { wave: "Mini update", arrived: "Sep 15", codes: ["MiniUpdate"], status: "expired" },
+  { wave: "Release", arrived: "Sep 12", codes: ["Release"], status: "expired" },
+] as const;
+
 export default function CodesPage() {
   return (
     <article className="mx-auto w-full max-w-6xl px-5">
@@ -115,6 +127,76 @@ export default function CodesPage() {
             </li>
           ))}
         </ol>
+      </section>
+
+      <section className="border-t rule py-12">
+        <h2 className="text-sm font-medium">Codes by update — the full history</h2>
+        <p className="mt-3 max-w-[62ch] text-sm text-muted-foreground">
+          Pets Universe retires the previous update code every time a patch ships,
+          so the wave a code arrived in tells you how long it is likely to live.
+          Statuses below follow the official wiki&apos;s code template; aggregator
+          lists lag this by days.
+        </p>
+        <div className="mt-5 overflow-hidden rounded-[var(--radius-container)] border rule">
+          <div className="grid grid-cols-[7rem_1fr_auto] gap-4 border-b rule bg-muted/60 px-5 py-3 text-xs font-medium text-muted-foreground sm:grid-cols-[8rem_7rem_1fr_auto]">
+            <span>Wave</span>
+            <span className="hidden sm:block">Arrived</span>
+            <span>Codes</span>
+            <span>Status</span>
+          </div>
+          <ul>
+            {UPDATE_WAVES.map((w) => (
+              <li
+                key={w.wave}
+                className="grid grid-cols-[7rem_1fr_auto] items-center gap-4 border-b rule bg-card px-5 py-3.5 text-sm last:border-b-0 sm:grid-cols-[8rem_7rem_1fr_auto]"
+              >
+                <span className="font-medium">{w.wave}</span>
+                <span className="hidden text-muted-foreground sm:block">{w.arrived}</span>
+                <span>
+                  {w.codes.map((c, i) => (
+                    <span key={c}>
+                      {i > 0 && ", "}
+                      <code
+                        className={`font-mono text-xs ${
+                          w.status === "working"
+                            ? "font-semibold"
+                            : "line-through opacity-60"
+                        }`}
+                      >
+                        {c}
+                      </code>
+                    </span>
+                  ))}
+                </span>
+                <span
+                  className={`text-xs ${
+                    w.status === "working"
+                      ? "font-medium text-primary"
+                      : "text-muted-foreground"
+                  }`}
+                >
+                  {w.status === "working" ? "Working" : "Expired"}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <p className="mt-4 max-w-[62ch] text-sm text-muted-foreground">
+          <strong className="font-medium text-foreground">Why Update1 and Update2 left the working list:</strong>{" "}
+          two aggregators still carry them, but the official wiki marked both
+          expired — Update1 when Update2 shipped, Update2 when Update3 shipped.
+          That retirement pattern has held for every wave so far (MiniUpdate and
+          Release died the same way), so this page follows the official record.
+          Trying a dead code costs nothing but a paste; the game just rejects it.
+        </p>
+        <p className="mt-3 max-w-[62ch] text-sm text-muted-foreground">
+          Beside the update waves sit <strong className="font-medium text-foreground">creator codes</strong>{" "}
+          — Russo, Ostrichh, DroverQ, Smidl155, E11opoppet, Olopomidoro, Cupcake,
+          AG64 and DarkRose, named after the YouTubers they were issued to — and
+          the <code className="font-mono text-xs">1mvisits</code> milestone code
+          from when the game passed one million visits. Creator codes do not
+          follow the update retirement pattern.
+        </p>
       </section>
 
       <section className="border-t rule py-12">
