@@ -6,9 +6,9 @@ import { AdsterraBanner } from "@/components/adsterra-banner";
 import { LEADERBOARD, RECTANGLE } from "@/lib/ads";
 
 export const metadata: Metadata = {
-  title: "Pets Universe codes, pet rarities and trading values",
+  title: "Pets Universe values — pet value list, rarities and trading guide",
   description:
-    "Every working Pets Universe code with its reward, the pets whose rarity is confirmed by the game itself, and an honest map of what is still unpublished. Fan-made, with the source for every number.",
+    "Pets Universe value lists and the pets whose rarity the game itself confirms — what is published, what is not, and how trading works. Fan-made, with the source for every number.",
   alternates: { canonical: "/" },
 };
 
