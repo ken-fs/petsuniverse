@@ -16,7 +16,7 @@
 | CF zone | `0b75dc862b6c1d5b5d821d2c7b2a4b57` |
 | **CF 分配的 NS** | `daisy.ns.cloudflare.com` + `lochlan.ns.cloudflare.com` ⚠️ 与舰队其他 zone 不同（见坑 1） |
 | 注册商 | Spaceship（NS 可用 API 改） |
-| 部署 | CF Git 集成，push → 自动构建（`npm run build` → `npx wrangler deploy`） |
+| 部署 | **GitHub Actions**（2026-10-13 起，`.github/workflows/deploy.yml`）：push main → `npm ci` → `npm run build` → `npx wrangler deploy` → 校验线上 `/.well-known/anvilwiki-deploy.txt` = 提交号。09-26 用 API 接的 CF Git 集成实际从没跑过（之前的部署全是本地 wrangler deploy） |
 | 构建配置 | trigger `f467ce5c-50d4-459f-9ed5-de7a1a13ddfd` · repo connection `5bbb08c8-969c-4020-8f62-3e8ee6824936` · script tag `2bac3c76489c4f03ba8ab49986158f09` · repo_id `1388839132` |
 | 游戏 | Pets Universe（Roblox，Lip Builds） |
 | universeId / placeId | `10759638075` / `74629631798007` |
@@ -94,7 +94,7 @@
 | 时间 | 任务 | 覆盖 petsuniverse 的部分 |
 |---|---|---|
 | 每天 10:00 | `scripts/site-hygiene.mjs` | 部署标记 / sitemap 域名 / 关键页 200 |
-| push 时 | CF Git 集成 | 构建 + 部署（实测 ~2-3 分钟）|
+| push 时 | GitHub Actions | 构建 + 部署 + 校验部署标记（约 3 分钟）|
 
 ### 手动
 
