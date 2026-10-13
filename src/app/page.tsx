@@ -37,7 +37,7 @@ export default function HomePage() {
             href="/codes/"
             className="inline-flex h-10 items-center rounded-[var(--radius-control)] bg-primary px-5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
           >
-            All {codes.length} working codes
+            All {codes.length} Pets Universe codes
           </Link>
           <Link
             href="/pets/"
