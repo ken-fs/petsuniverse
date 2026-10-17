@@ -1,15 +1,15 @@
 {
-  "_note": "Every field carries its own source status. verified=false means no public source exists for that number yet — pages must render a gap rather than a plausible guess. Codes are corroborated by two independent listings (checked 2026-09-26); pets carry their own source note. Source list and the reason each gap exists are on /about/.",
+  "_note": "Every field carries its own source status. verified=false means no public source exists for that number yet — pages must render a gap rather than a plausible guess. Codes are corroborated by two independent listings (checked 2026-10-18); pets carry their own source note. Source list and the reason each gap exists are on /about/.",
   "game": {
     "name": "Pets Universe",
     "developer": "Lip Builds",
     "universeId": 10759638075,
     "placeId": 74629631798007,
     "created": "2026-08-24",
-    "updated": "2026-10-16",
-    "visits": 7507589,
-    "favorites": 170910,
-    "ccu": 10893,
+    "updated": "2026-10-17",
+    "visits": 8041700,
+    "favorites": 173425,
+    "ccu": 6235,
     "discord": "https://discord.gg/ghyytf2Kad",
     "group": "https://www.roblox.com/communities/35939768/Lip-Builds",
     "robloxUrl": "https://www.roblox.com/games/74629631798007/Pets-Universe"
@@ -53,6 +53,11 @@
     }
   ],
   "codes": [
+    {
+      "code": "Halloween",
+      "reward": "1 Coins Potion, 1 Critical Potion, 1 Hatch Potion, 1 Luck Potion, 1 Rubies Potion, 1 Purple Jelly",
+      "sources": 2
+    },
     {
       "code": "Update4",
       "reward": "1 Golden Apple, plus Coins, Critical, Hatch, Luck and Rubies potions",
