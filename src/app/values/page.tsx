@@ -49,8 +49,8 @@ export default function ValuesPage() {
           Pets Universe trading values
         </h1>
         <p className="mt-4 max-w-[62ch] text-muted-foreground">
-          {game.name} ships with trading on — the game&apos;s own title carries the{" "}
-          <code className="font-mono text-sm">[TRADES]</code> tag — and a Discord where
+          {game.name} ships with trading on — the game&apos;s Roblox title carried a{" "}
+          <code className="font-mono text-sm">[TRADES]</code> tag in September — and a Discord where
           trades get negotiated. What it does not have is a value list. This page
           explains why, and gives you a method you can use today instead of trusting a
           number someone made up.
@@ -149,6 +149,13 @@ export default function ValuesPage() {
           <Link href="/about/" className="text-primary underline-offset-4 hover:underline">
             How this site sources data
           </Link>
+        </p>
+        <p className="mt-3 max-w-[62ch] text-sm text-muted-foreground">
+          Need more pets to trade? The working{" "}
+          <Link href="/codes/" className="text-primary underline-offset-4 hover:underline">
+            Pets Universe codes
+          </Link>{" "}
+          give free Luck and Hatch potions for your next hatching run.
         </p>
       </section>
     </article>

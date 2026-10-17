@@ -132,6 +132,13 @@ export default function PetsPage() {
           </Link>
           .
         </p>
+        <p className="mt-3 max-w-[62ch] text-sm text-muted-foreground">
+          Hunting a rare pet? Grab the free Luck and Hatch potions from the{" "}
+          <Link href="/codes/" className="text-primary underline-offset-4 hover:underline">
+            Pets Universe codes
+          </Link>{" "}
+          first. They&apos;re the items that boost your egg odds.
+        </p>
       </section>
     </article>
   );

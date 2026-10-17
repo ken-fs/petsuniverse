@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { codes, redeemSteps, LAST_CHECKED } from "@/data/game";
+import { codes, game, redeemSteps, LAST_CHECKED } from "@/data/game";
 import { CopyCode } from "@/components/copy-code";
 import { FaqJsonLd } from "@/components/json-ld";
 import { AdsterraBanner } from "@/components/adsterra-banner";
@@ -8,14 +8,20 @@ import { LEADERBOARD, RECTANGLE } from "@/lib/ads";
 
 export const metadata: Metadata = {
   title: `Pets Universe codes (October 2026) — ${codes.length} working codes`,
-  description: `All ${codes.length} working Pets Universe codes with the exact reward for each — Coins, Luck, Hatch, Critical and Rubies potions plus fruit — and the steps to redeem them.`,
+  description: `All ${codes.length} working Pets Universe codes for Roblox, with the exact reward for each: Coins, Luck, Hatch, Critical and Rubies potions plus fruit. Checked ${LAST_CHECKED}.`,
   alternates: { canonical: "/codes/" },
 };
+
+// Codes listed by two or more independent sources vs. only one. The page says
+// which is which instead of claiming every code is double-sourced.
+const twoSource = codes.filter((c) => c.sources >= 2);
+const oneSource = codes.filter((c) => c.sources < 2);
+const oneSourceText = oneSource.map((c) => c.code).join(", ");
 
 const FAQ = [
   {
     q: "How many working Pets Universe codes are there?",
-    a: `There are ${codes.length} codes on this list, all sharing potions and fruit rewards, and every one is confirmed by two independent listings.  Codes come from the developers and from content creators, so names like Russo, Ostrichh and DroverQ are creator codes rather than milestone codes.`,
+    a: `There are ${codes.length} working codes right now. All of them pay out potions and fruit. ${twoSource.length} are listed by two or more independent sources${oneSource.length ? `, and ${oneSourceText} is listed by one (the official wiki)` : ""}. Some come with game updates, and some are creator codes named after YouTubers, like Russo, Ostrichh and DroverQ.`,
   },
   {
     q: "Why is my Pets Universe code not working?",
@@ -26,12 +32,16 @@ const FAQ = [
     a: "Potions and fruit: Coins, Luck, Hatch, Critical and Rubies potions, plus Apples, Bananas, Blueberries, Kiwis and Mangos. Luck and Hatch potions are the ones that matter for hatching — the fruit is consumed during hatching runs.",
   },
   {
+    q: "Are Pet Universe codes the same as Pets Universe codes?",
+    a: "Yes, if you mean the Roblox pet game by Lip Builds. Its Roblox name is \"Pets Universe!\" (right now with a pumpkin emoji in front for Halloween). People search it as Pet Universe, Pets Universe and Pets Universe!, but it's one game and one code list. If your game is by a different creator, these codes won't work in it.",
+  },
+  {
     q: "Where do you redeem Pets Universe codes?",
     a: "In game: open the codes menu next to the shop, paste the code and press Redeem. The reward lands in your inventory immediately.",
   },
   {
     q: "Does this game have milestone codes?",
-    a: `Yes — 1mvisits is a milestone code that went live when the game passed one million visits, and the update codes (Update4, Update2, Update1) ship with the game's patches. Milestone and update codes sit alongside creator codes like Russo, Ostrichh and DroverQ; whichever kind, every one on this page is confirmed by two independent listings before it is published.`,
+    a: `Yes — 1mvisits is a milestone code that went live when the game passed one million visits, and the update codes (Update4, Update2, Update1) ship with the game's patches. Milestone and update codes sit alongside creator codes like Russo, Ostrichh and DroverQ.`,
   },
 ];
 
@@ -48,6 +58,8 @@ const UPDATE_WAVES = [
 ] as const;
 
 export default function CodesPage() {
+  const latestWave = UPDATE_WAVES.find((w) => w.status === "working") ?? UPDATE_WAVES[0];
+
   return (
     <article className="mx-auto w-full max-w-6xl px-5">
       <FaqJsonLd items={FAQ} />
@@ -67,9 +79,16 @@ export default function CodesPage() {
           Pets Universe codes
         </h1>
         <p className="mt-4 max-w-[62ch] text-muted-foreground">
-          {codes.length} codes, each with the reward it actually pays out. Every code
-          here comes from a live listing we checked on {LAST_CHECKED} — none are
-          carried over from a stale list, and none are invented.
+          Pets Universe has {codes.length} working codes right now. The newest is{" "}
+          <code className="font-mono text-sm font-semibold">{latestWave.codes[0]}</code>,
+          which came with {latestWave.wave} on {latestWave.arrived}. Copy one below,
+          then redeem it in the shop&apos;s codes section.
+        </p>
+        <p className="mt-3 max-w-[62ch] text-muted-foreground">
+          Searching for &quot;Pet Universe codes&quot; or &quot;Pets Universe! codes&quot;?
+          It&apos;s the same Roblox game by {game.developer}, so it&apos;s the same list.
+          We checked every code against live sources on {LAST_CHECKED}. Nothing here
+          is carried over from an old list or made up.
         </p>
       </header>
 
@@ -100,13 +119,20 @@ export default function CodesPage() {
         </div>
 
         <p className="mt-4 max-w-[62ch] text-sm text-muted-foreground">
-          Sourcing note: every code on this page is confirmed by{" "}
+          Sourcing note: {twoSource.length} of these codes are listed by{" "}
           <strong className="font-medium text-foreground">
-            two independent listings
+            two or more independent sources
           </strong>{" "}
-          with matching rewards, which is the threshold this site publishes at. Codes
-          retire without warning in this genre, so the list is re-checked rather than
-          trusted — anything that stops matching gets pulled.
+          with matching rewards.
+          {oneSource.length > 0 && (
+            <>
+              {" "}
+              {oneSourceText} is listed only by the official wiki, so treat it as
+              less certain.
+            </>
+          )}{" "}
+          Codes can retire without warning, so we re-check the list instead of
+          trusting it.
         </p>
       </section>
 
