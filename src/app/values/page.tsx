@@ -55,6 +55,13 @@ export default function ValuesPage() {
           explains why, and gives you a method you can use today instead of trusting a
           number someone made up.
         </p>
+        <p className="mt-3 max-w-[62ch] text-muted-foreground">
+          Looking for the general Pets Universe values overview? Start on the{" "}
+          <Link href="/" className="text-primary underline-offset-4 hover:underline">
+            Pets Universe values home page
+          </Link>
+          . This page is only about pricing a trade.
+        </p>
       </header>
 
       <section className="grid gap-4 sm:grid-cols-2">
