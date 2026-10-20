@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { codes, game, verifiedPets, gaps, LAST_CHECKED, visitsPerFavourite } from "@/data/game";
-import { CopyCode } from "@/components/copy-code";
 import { AdsterraBanner } from "@/components/adsterra-banner";
 import { LEADERBOARD, RECTANGLE } from "@/lib/ads";
 
@@ -15,7 +14,6 @@ export const metadata: Metadata = {
 const nf = new Intl.NumberFormat("en-US");
 
 export default function HomePage() {
-  const topCode = codes[0];
 
   return (
     <div className="mx-auto w-full max-w-6xl px-5">
@@ -53,13 +51,6 @@ export default function HomePage() {
           </Link>
         </div>
 
-        {topCode && (
-          <div className="mt-8 flex flex-wrap items-center gap-3 rounded-[var(--radius-container)] border rule bg-card p-4">
-            <span className="text-sm text-muted-foreground">Newest code:</span>
-            <CopyCode code={topCode.code} />
-            <span className="text-sm text-muted-foreground">{topCode.reward}</span>
-          </div>
-        )}
       </section>
 
       <section className="grid gap-px overflow-hidden rounded-[var(--radius-container)] border rule bg-border sm:grid-cols-2 lg:grid-cols-4">
