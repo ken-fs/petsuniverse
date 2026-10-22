@@ -1,15 +1,15 @@
 {
-  "_note": "Every field carries its own source status. verified=false means no public source exists for that number yet — pages must render a gap rather than a plausible guess. Codes are corroborated by two independent listings (checked 2026-10-21); pets carry their own source note. Source list and the reason each gap exists are on /about/.",
+  "_note": "Every field carries its own source status. verified=false means no public source exists for that number yet — pages must render a gap rather than a plausible guess. Codes are corroborated by two independent listings (checked 2026-10-23); pets carry their own source note. Source list and the reason each gap exists are on /about/.",
   "game": {
     "name": "Pets Universe",
     "developer": "Lip Builds",
     "universeId": 10759638075,
     "placeId": 74629631798007,
     "created": "2026-08-24",
-    "updated": "2026-10-21",
-    "visits": 9475319,
-    "favorites": 179011,
-    "ccu": 4489,
+    "updated": "2026-10-22",
+    "visits": 9828265,
+    "favorites": 180026,
+    "ccu": 4687,
     "discord": "https://discord.gg/ghyytf2Kad",
     "group": "https://www.roblox.com/communities/35939768/Lip-Builds",
     "robloxUrl": "https://www.roblox.com/games/74629631798007/Pets-Universe"
