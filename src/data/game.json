@@ -1,13 +1,13 @@
 {
-  "_note": "Every field carries its own source status. verified=false means no public source exists for that number yet — pages must render a gap rather than a plausible guess. Codes are corroborated by two independent listings (checked 2026-10-24); pets carry their own source note. Source list and the reason each gap exists are on /about/.",
+  "_note": "Every field carries its own source status. verified=false means no public source exists for that number yet — pages must render a gap rather than a plausible guess. Codes are corroborated by two independent listings (checked 2026-10-26); pets carry their own source note. Source list and the reason each gap exists are on /about/.",
   "game": {
     "name": "Pets Universe",
     "developer": "Lip Builds",
     "universeId": 10759638075,
     "placeId": 74629631798007,
     "created": "2026-08-24",
-    "updated": "2026-10-23",
-    "visits": 10389824,
+    "updated": "2026-10-25",
+    "visits": 11127526,
     "favorites": 181762,
     "ccu": 4589,
     "discord": "https://discord.gg/ghyytf2Kad",
