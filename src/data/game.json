@@ -1,5 +1,5 @@
 {
-  "_note": "Every field carries its own source status. verified=false means no public source exists for that number yet — pages must render a gap rather than a plausible guess. Codes are corroborated by two independent listings (checked 2026-10-27); pets carry their own source note. Source list and the reason each gap exists are on /about/.",
+  "_note": "Every field carries its own source status. verified=false means no public source exists for that number yet — pages must render a gap rather than a plausible guess. Codes are corroborated by two independent listings (checked 2026-10-28); pets carry their own source note. Source list and the reason each gap exists are on /about/.",
   "game": {
     "name": "Pets Universe",
     "developer": "Lip Builds",
@@ -53,6 +53,11 @@
     }
   ],
   "codes": [
+    {
+      "code": "cursed",
+      "reward": "Potions and Fruits (exact amounts not confirmed by sources)",
+      "sources": 2
+    },
     {
       "code": "Halloween",
       "reward": "1 Coins Potion, 1 Critical Potion, 1 Hatch Potion, 1 Luck Potion, 1 Rubies Potion, 1 Purple Jelly",
