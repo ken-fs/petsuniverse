@@ -6,7 +6,7 @@ import { FaqJsonLd } from "@/components/json-ld";
 export const metadata: Metadata = {
   title: "Pets Universe trading values — how pricing works here",
   description:
-    "How Pets Universe trading values get set, why no public value list exists yet, and a method you can use to price a trade yourself instead of trusting a number.",
+    "How to price a Pets Universe trade yourself: what sets a pet's trading value, what the game confirms, and a 4-step method that doesn't rely on a made-up number.",
   alternates: { canonical: "/values/" },
 };
 
@@ -56,9 +56,9 @@ export default function ValuesPage() {
           number someone made up.
         </p>
         <p className="mt-3 max-w-[62ch] text-muted-foreground">
-          Looking for the general Pets Universe values overview? Start on the{" "}
+          Looking for the pet value list and rarities overview? That lives on the{" "}
           <Link href="/" className="text-primary underline-offset-4 hover:underline">
-            Pets Universe values home page
+            Pets Universe home page
           </Link>
           . This page is only about pricing a trade.
         </p>
