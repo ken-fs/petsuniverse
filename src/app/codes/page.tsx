@@ -7,8 +7,8 @@ import { AdsterraBanner } from "@/components/adsterra-banner";
 import { LEADERBOARD, RECTANGLE } from "@/lib/ads";
 
 export const metadata: Metadata = {
-  title: `Pets Universe codes (October 2026) — ${codes.length} working codes`,
-  description: `All ${codes.length} working Pets Universe codes for Roblox, with the exact reward for each: Coins, Luck, Hatch, Critical and Rubies potions plus fruit. Checked ${LAST_CHECKED}.`,
+  title: `Pets Universe codes (November 2026) — ${codes.length} working Pet Universe codes`,
+  description: `All ${codes.length} working Pets Universe (Pet Universe) codes for Roblox, with the exact reward for each: Coins, Luck, Hatch, Critical and Rubies potions plus fruit. Checked ${LAST_CHECKED}.`,
   alternates: { canonical: "/codes/" },
 };
 
@@ -85,8 +85,8 @@ export default function CodesPage() {
           then redeem it in the shop&apos;s codes section.
         </p>
         <p className="mt-3 max-w-[62ch] text-muted-foreground">
-          Searching for &quot;Pet Universe codes&quot; or &quot;Pets Universe! codes&quot;?
-          It&apos;s the same Roblox game by {game.developer}, so it&apos;s the same list.
+          Searching for &quot;pet universe codes&quot;, &quot;pets universe codes&quot; or &quot;pet universe code&quot;?
+          You&apos;re in the right place. It&apos;s the same Roblox game by {game.developer}, so it&apos;s the same list.
           We checked every code against live sources on {LAST_CHECKED}. Nothing here
           is carried over from an old list or made up.
         </p>
