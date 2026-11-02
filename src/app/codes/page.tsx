@@ -41,7 +41,7 @@ const FAQ = [
   },
   {
     q: "Does this game have milestone codes?",
-    a: `Yes — 1mvisits is a milestone code that went live when the game passed one million visits, and the update codes (Update4, Update2, Update1) ship with the game's patches. Milestone and update codes sit alongside creator codes like Russo, Ostrichh and DroverQ.`,
+    a: `Yes — 1mvisits was a milestone code for passing one million visits, but it has expired. Update codes (Update4 is the live one) ship with the game's patches and sit alongside creator codes like Russo, Ostrichh and DroverQ.`,
   },
 ];
 
@@ -219,7 +219,7 @@ export default function CodesPage() {
           Beside the update waves sit <strong className="font-medium text-foreground">creator codes</strong>{" "}
           — Russo, Ostrichh, DroverQ, Smidl155, E11opoppet, Olopomidoro, Cupcake,
           AG64 and DarkRose, named after the YouTubers they were issued to — and
-          the <code className="font-mono text-xs">1mvisits</code> milestone code
+          the expired <code className="font-mono text-xs">1mvisits</code> milestone code
           from when the game passed one million visits. Creator codes do not
           follow the update retirement pattern.
         </p>
