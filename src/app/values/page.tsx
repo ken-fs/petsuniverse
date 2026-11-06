@@ -4,9 +4,9 @@ import { game, pets, verifiedPets, LAST_CHECKED } from "@/data/game";
 import { FaqJsonLd } from "@/components/json-ld";
 
 export const metadata: Metadata = {
-  title: "Pets Universe trading values — how pricing works here",
+  title: "How to price a Pets Universe trade — 4-step method",
   description:
-    "How to price a Pets Universe trade yourself: what sets a pet's trading value, what the game confirms, and a 4-step method that doesn't rely on a made-up number.",
+    "Trade pricing for Pets Universe: what sets a pet's trading value, what the game confirms, and a 4-step method that doesn't rely on a made-up number.",
   alternates: { canonical: "/values/" },
 };
 
@@ -46,7 +46,7 @@ export default function ValuesPage() {
 
       <header className="pt-6 pb-10">
         <h1 className="max-w-[24ch] text-3xl font-semibold tracking-tight sm:text-4xl">
-          Pets Universe trading values
+          How to price a Pets Universe trade
         </h1>
         <p className="mt-4 max-w-[62ch] text-muted-foreground">
           {game.name} ships with trading on — the game&apos;s Roblox title carried a{" "}
@@ -56,7 +56,7 @@ export default function ValuesPage() {
           number someone made up.
         </p>
         <p className="mt-3 max-w-[62ch] text-muted-foreground">
-          Looking for the pet value list and rarities overview? That lives on the{" "}
+          Looking for Pets Universe values, the pet list and rarities? That all lives on the{" "}
           <Link href="/" className="text-primary underline-offset-4 hover:underline">
             Pets Universe home page
           </Link>
